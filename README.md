@@ -1,2 +1,2 @@
 # shiny-palm-tree
-Basic Web site to demonstrate CI with Jenkins
+Basic Web site to use for testing, demonstrate CI with Jenkins, and other random stuff.
