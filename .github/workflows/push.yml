@@ -18,6 +18,8 @@ jobs:
   python-tests:
     name: Project with Tests Workflow
 
+    needs: checkout-repo
+
     # `runs-on` docs:
     # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
     # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
