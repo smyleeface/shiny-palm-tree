@@ -11,11 +11,16 @@ jobs:
     # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
     runs-on: ubuntu-latest
     steps:
+
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v2
+
       - name: Run Test
         run: |
+
           ls -la
           pwd
-          cd ${GITHUB_WORKSPACE}/python/project_with_tests
+          cd ./python/project_with_tests
           python3 setup.py install
           python3 setup.py test
 #  run-tests-2:
