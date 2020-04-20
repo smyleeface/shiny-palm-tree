@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Run Test
         run: |
+          ls -la
+          pwd
           cd ${GITHUB_WORKSPACE}/python/project_with_tests
           python3 setup.py install
           python3 setup.py test
