@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Run Test
         run: |
-          cd ./python/project_with_tests
+          cd ${GITHUB_WORKSPACE}/python/project_with_tests
           python3 setup.py install
           python3 setup.py test
 #  run-tests-2:
