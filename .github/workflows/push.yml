@@ -19,10 +19,9 @@ jobs:
         run: |
 
           sudo apt-get install python3-setuptools -y
-          pip3 freeze
-#          cd ./python/project_with_tests
-#          sudo python3 setup.py install
-#          python3 setup.py test
+          cd ./python/project_with_tests
+          sudo python3 setup.py install
+          python3 setup.py test
 #  run-tests-2:
 #    name: Tests for python/project_with_tests
 #
