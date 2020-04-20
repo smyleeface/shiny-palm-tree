@@ -18,6 +18,7 @@ jobs:
       - name: Run Test
         run: |
 
+          apt-get install python3-setuptools
           ls -la
           pwd
           cd ./python/project_with_tests
