@@ -4,12 +4,12 @@ on: push
 
 
 jobs:
-  # `runs-on` docs:
-  # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
-  # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
-  runs-on: ubuntu-latest
   checkout-repo:
     name: CheckoutRepo
+    # `runs-on` docs:
+    # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
+    # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
+    runs-on: ubuntu-latest
     steps:
 
       # https://github.com/actions/checkout
@@ -17,6 +17,11 @@ jobs:
 
   python-tests:
     name: Project with Tests Workflow
+
+    # `runs-on` docs:
+    # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
+    # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
+    runs-on: ubuntu-latest
 
     env:
       AWS_DEFAULT_REGION: us-west-2
