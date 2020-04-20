@@ -10,6 +10,8 @@ jobs:
     # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
     # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
     runs-on: ubuntu-latest
+    env:
+      AWS_DEFAULT_REGION: us-west-2
     steps:
 
       # https://github.com/actions/checkout
