@@ -1,0 +1,18 @@
+name: Run Python Tests
+
+on: push
+
+jobs:
+  run-tests:
+    name: Tests for python/project_with_tests
+
+    # `runs-on` docs:
+    # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
+    # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Test
+        run: |
+          cd python/project_with_tests
+          python3 setup.py install
+          python3 setup.py test

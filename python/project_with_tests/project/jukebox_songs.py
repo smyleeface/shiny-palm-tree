@@ -2,7 +2,7 @@ import csv
 import logging
 import boto3
 
-from song import Song
+from project.song import Song
 
 
 class JukeboxSongs(object):

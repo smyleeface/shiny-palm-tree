@@ -2,7 +2,7 @@ import unittest
 
 from mock import patch
 
-from jukebox_songs import JukeboxSongs
+from project.jukebox_songs import JukeboxSongs
 from tests.generate_stubber import GenerateStubber
 
 
@@ -59,7 +59,7 @@ class ReadUploadedSongsTest(unittest.TestCase):
             expected_params={'Bucket': 'test-bucket'}
         )
 
-    @patch('jukebox_songs.csv.reader', return_value=song_list)
+    @patch('project.jukebox_songs.csv.reader', return_value=song_list)
     def test_read_uploaded_song_ok(self, csv_reader_mock):
 
         # Arrange
@@ -77,7 +77,7 @@ class ReadUploadedSongsTest(unittest.TestCase):
         self.assertEqual(jukebox_songs.new_songs[0].artist, 'Pink Floyd')
         self.assertEqual(jukebox_songs.new_songs[0].number, '719')
 
-    @patch('jukebox_songs.csv.reader', return_value=song_list_multi)
+    @patch('project.jukebox_songs.csv.reader', return_value=song_list_multi)
     def test_read_uploaded_song_ok_multi(self, csv_reader_mock):
 
         # Arrange
@@ -94,7 +94,7 @@ class ReadUploadedSongsTest(unittest.TestCase):
         # Assert
         self.assertEqual(len(jukebox_songs.new_songs), 3)
 
-    @patch('jukebox_songs.csv.reader', return_value=song_list_missing_fields)
+    @patch('project.jukebox_songs.csv.reader', return_value=song_list_missing_fields)
     def test_read_uploaded_song_missing_fields(self, csv_reader_mock):
 
         # Arrange
@@ -111,7 +111,7 @@ class ReadUploadedSongsTest(unittest.TestCase):
         # Assert
         self.assertEqual(len(jukebox_songs.new_songs), 0)
 
-    @patch('jukebox_songs.csv.reader', return_value=song_list_empty)
+    @patch('project.jukebox_songs.csv.reader', return_value=song_list_empty)
     def test_read_uploaded_song_list_empty(self, csv_reader_mock):
 
         # Arrange
@@ -128,7 +128,7 @@ class ReadUploadedSongsTest(unittest.TestCase):
         # Assert
         self.assertEqual(len(jukebox_songs.new_songs), 0)
 
-    @patch('jukebox_songs.csv.reader', return_value=song_list_heading)
+    @patch('project.jukebox_songs.csv.reader', return_value=song_list_heading)
     def test_read_uploaded_song_list_heading(self, csv_reader_mock):
 
         # Arrange

@@ -1,7 +1,7 @@
 import unittest
 
-from jukebox_songs import JukeboxSongs
-from song import Song
+from project.jukebox_songs import JukeboxSongs
+from project.song import Song
 from tests.generate_stubber import GenerateStubber
 
 

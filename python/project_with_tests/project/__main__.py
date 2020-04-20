@@ -2,7 +2,7 @@ import logging
 
 import boto3
 
-from jukebox_songs import JukeboxSongs
+from project.jukebox_songs import JukeboxSongs
 
 logging.basicConfig()
 logging.Logger('jukebox_song_update')
