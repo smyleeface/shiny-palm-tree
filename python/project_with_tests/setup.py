@@ -12,7 +12,8 @@ setup(
         'boto3>=1.12.41'
     ],
     tests_require=[
-        'mock>=4.0.2'
+        'tox>=3.14.6<4.0.0',
+        'mock>=4.0.2<5.0.0'
     ],
     test_suite='tests.songlist_upload_testsuite',
 )
