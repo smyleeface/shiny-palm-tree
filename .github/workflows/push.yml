@@ -27,4 +27,4 @@ jobs:
           sudo pip3 install -U pytest
           sudo python3 setup.py install
       - name: Run Tests
-        run: sudo -m pytest python
+        run: sudo python3 -m pytest python
