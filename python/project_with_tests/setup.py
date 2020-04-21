@@ -11,10 +11,9 @@ setup(
     install_requires=[
         'boto3>=1.12.41'
     ],
-    tests_require=[
-        'pytest>=5.4.1<6.0.0',
-        'mock>=4.0.2<5.0.0'
-    ],
+    extras_require={
+        'test': ['pytest>=5.4.1<6.0.0', 'mock>=4.0.2<5.0.0']
+    },
     test_suite='tests.songlist_upload_testsuite',
 )
 
