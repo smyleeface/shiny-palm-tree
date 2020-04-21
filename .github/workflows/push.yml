@@ -23,6 +23,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install
         run: |
+          echo ${AWS_REGION}
           sudo apt-get install python3-setuptools python3-dev
           sudo pip3 install .[test]
       - name: Run Tests
