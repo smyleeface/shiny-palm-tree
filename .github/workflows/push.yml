@@ -4,21 +4,8 @@ on: push
 
 
 jobs:
-  checkout-repo:
-    name: CheckoutRepo
-    # `runs-on` docs:
-    # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
-    # https://github.com/actions/virtual-environments/blob/master/images/linux/Ubuntu1804-README.md
-    runs-on: ubuntu-latest
-    steps:
-
-      # https://github.com/actions/checkout
-      - uses: actions/checkout@v2
-
   python-tests:
     name: Project with Tests Workflow
-
-    needs: checkout-repo
 
     # `runs-on` docs:
     # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
@@ -33,10 +20,11 @@ jobs:
         working-directory: ./python/project_with_tests
 
     steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/python-tests
       - name: Install
         run: |
           sudo apt-get install python3-setuptools
           sudo python3 setup.py install
-
       - name: Run Tests
         run: sudo python3 setup.py test
