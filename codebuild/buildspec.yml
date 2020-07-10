@@ -3,4 +3,4 @@ phases:
   build:
     commands:
       - env
-      - if [[ "${GITHUB_EVENT}" == "push" ]]; then; codebuild/builspec-push.sh; fi
+      - if [[ "${GITHUB_EVENT}" == "push" ]]; then codebuild/builspec-push.sh; fi
