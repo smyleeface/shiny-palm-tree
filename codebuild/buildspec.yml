@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - set +e
+      - env
+      - |
+        if [ "${GITHUB_EVENT}" == "push" ]; then
+          codebuild/builspec-push.sh
+        fi

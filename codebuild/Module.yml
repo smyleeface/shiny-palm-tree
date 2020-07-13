@@ -1,0 +1,93 @@
+# The Module Name is used as prefix for all contained resources.
+Module: Smylee.ShinyPalmTreeCodeBuild
+
+# The Module Version is shown in the CloudFormation stack and Lambda function descriptions.
+Version: 1.0-DEV
+
+# The Module Description is shown in the AWS CloudFormation console with the version number.
+Description: CodeBuild definitions for ShinyPalmTree
+
+# The Items section defines values and resources for the module.
+Items:
+
+  - Parameter: CodeBuildProjectName
+    Description: Name of the CodeBuild project
+    Default: shiny-palm-tree
+
+  - Parameter: CodeBuildServiceRoleName
+    Description: CodeBuild Service Role for ShinyPalmTree
+    Default: ShinyPalmTreeCodeBuildServiceRole
+
+  - Parameter: CodeBuildServiceRolePolicyName
+    Description: CodeBuild Service Role Policy Name for ShinyPalmTree
+    Default: ShinyPalmTreeServiceRolePolicy
+
+  - Parameter: CodeBuilImageName
+    Description: Docker image to use for the CodeBuild run
+    Default: smyleeface/lambdasharprunner:latest
+
+  - Parameter: BuildSpecPath
+    Description: Path to the buildspec yaml
+    Default: codebuild/buildspec.yml
+
+  - Parameter: RepoLocation
+    Description: Url to the repo
+    Default: https://github.com/smyleeface/shiny-palm-tree.git
+
+  ################
+  # Service Role
+  ################
+  - Resource: CodeBuildServiceRole
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref CodeBuildServiceRoleName
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Sid: trust
+            Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+            Action: sts:AssumeRole
+
+  - Resource: CodeBuildServiceRolePolicy
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: arn:aws:logs:*:*:*
+      PolicyName: !Ref CodeBuildServiceRolePolicyName
+      Roles:
+        - !Ref CodeBuildServiceRole
+
+  ###########################
+  # CodeBuild for Push Event
+  ###########################
+  - Resource: PushEventCodeBuildProject
+    Type: "AWS::CodeBuild::Project"
+    Properties:
+      Artifacts:
+        Type: NO_ARTIFACTS
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: !Ref CodeBuilImageName
+        Type: LINUX_CONTAINER
+      Name: !Ref CodeBuildProjectName
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      Source:
+        Auth:
+          Type: OAUTH
+          Resource: GITHUB
+        BuildSpec: !Ref BuildSpecPath
+        Location: !Ref RepoLocation
+        GitCloneDepth: 1
+        Type: GITHUB
